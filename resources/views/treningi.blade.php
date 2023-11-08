@@ -6,10 +6,9 @@
             <div class="card-header">Treningi</div>
             <div class="card-body">
                 <h5>Wybierz partię ciała:</h5>
-                <a href="{{ route('klatka') }}" class="btn btn-primary">Klatka</a>
-                <a href="{{ route('plecy') }}" class="btn btn-primary">Plecy</a>
-                <a href="{{ route('nogi') }}" class="btn btn-primary">Nogi</a>
-                <a href="{{ route('biceps') }}" class="btn btn-primary">Biceps</a>
+                @foreach($body_parts as $part)
+                    <a href="{{ route('showBodyPartExercises', ['bodyPart' => $part->name]) }}" class="btn btn-primary">{{ $part->name }}</a>
+                @endforeach
             </div>
         </div>
     </div>
