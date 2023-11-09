@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('exercises', 'ExerciseController');
+Route::resource('body-parts', 'BodyPartController');
+Route::resource('difficulty-levels', 'DifficultyLevelController');
+Route::middleware(['auth'])->post('/training-results', 'TrainingResultController@store');
+
