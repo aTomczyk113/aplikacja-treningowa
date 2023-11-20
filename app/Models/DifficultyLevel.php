@@ -9,7 +9,8 @@ class DifficultyLevel extends Model
 {
     use HasFactory;
 
-    public function exercises() {
+    public function exercises()
+    {
         return $this->hasMany(Exercise::class);
     }
 }

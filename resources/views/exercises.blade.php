@@ -9,6 +9,10 @@
                 <!-- wyświetlanie jednego ćwiczenia -->
                 <h2>{{ $exercise->name }}</h2>
                 <p>{{ $exercise->description }}</p>
+
+                <!-- Przycisk do pobrania następnego ćwiczenia -->
+                <a href="{{ route('showExercises', ['bodyPart' => $exercise->body_part_id, 'difficulty' => $exercise->difficulty_level_id]) }}" class="btn btn-primary">Następne ćwiczenie</a>
+
                 <a href="{{ route('wybierz-trening') }}" class="btn btn-primary">Wróć</a>
             </div>
         </div>

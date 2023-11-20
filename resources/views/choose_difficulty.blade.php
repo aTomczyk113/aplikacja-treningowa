@@ -6,7 +6,7 @@
             <div class="card-header">Wybierz poziom trudności</div>
             <div class="card-body">
                 @foreach($difficulty_levels as $level)
-                    <a href="{{ route('showExercises', ['bodyPart' => $bodyPart->id, 'difficulty' => $level->id]) }}" class="btn btn-primary">{{$level->name}}</a>
+                    <a href="{{ route('showExercises', ['bodyPart' => $bodyPart, 'difficulty' => $level->id]) }}" class="btn btn-primary">{{$level->name}}</a>
                 @endforeach
             </div>
         </div>
