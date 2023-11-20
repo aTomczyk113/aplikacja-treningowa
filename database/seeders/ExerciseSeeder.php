@@ -11,9 +11,7 @@ class ExerciseSeeder extends Seeder
 {
     public function run()
     {
-        // Dodaj ćwiczenia dla Pleców, Nóg i Bicepsa (jak wcześniej)
 
-        // Dodaj ćwiczenia dla Klatki
         $this->createExercisesForBodyPart('Klatka', 'Łatwy', [
             'Pompki' => 'Podstawowe ćwiczenie angażujące mięśnie klatki piersiowej, tricepsa i przednich deltoidów. Wykonuj je w równomiernym tempie.',
             'Wyciskanie na ławce płaskiej' => 'Ćwiczenie izolujące mięśnie klatki piersiowej. Dbaj o kontrolowany ruch sztangi w górę i w dół.',

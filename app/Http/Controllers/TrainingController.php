@@ -25,19 +25,16 @@ class TrainingController extends Controller
 
     public function plecy()
     {
-        // Tu umieść kod dla treningu pleców
         return view('plecy_trening');
     }
 
     public function nogi()
     {
-        // Tu umieść kod dla treningu nóg
         return view('nogi_trening');
     }
 
     public function biceps()
     {
-        // Tu umieść kod dla treningu bicepsa
         return view('biceps_trening');
     }
 
