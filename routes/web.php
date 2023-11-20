@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingController;
-use App\Http\Controllers\StatisticsController;
-use App\Http\Controllers\ExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +28,8 @@ Route::get('/treningi/{bodyPart}', [TrainingController::class, 'showBodyPartExer
 
 Route::get('/cwiczenia/{bodyPart}/{difficulty}', [TrainingController::class, 'showExercises'])->middleware('auth')->name('showExercises');
 
-Route::get('/statistics', [StatisticsController::class, 'index']);
-
 Route::get('/exercises/{bodyPart}/{difficulty}', [TrainingController::class, 'showExercises'])->name('showExercises');
 
 Route::get('/chooseDifficulty/{bodyPart}', [TrainingController::class, 'chooseDifficulty'])->name('chooseDifficulty');
+
+
