@@ -21,7 +21,7 @@ class ExerciseController extends Controller
         if ($exercises->isEmpty()) {
             // Jeśli wszystkie ćwiczenia zostały wykonane, czyszczenie sesji
             $request->session()->forget('completed_exercises');
-            return response('Wszystkie ćwiczenia zostały wykonane, sesja została zresetowana.');
+            return view('exercise_completed');
         }
 
         // Losowanie jednego z ćwiczeń
@@ -31,6 +31,10 @@ class ExerciseController extends Controller
         $completedExercises[] = $exercise->id;
         $request->session()->put('completed_exercises', $completedExercises);
 
-        return view('exercise.show', ['exercise' => $exercise]);
+        // Dodawanie ćwiczenia do wykonanych dla zalogowanego użytkownika
+        $user = auth()->user();
+        $user->markExerciseAsCompleted($exercise->id);
+
+        return view('exercises', ['exercise' => $exercise]);
     }
 }

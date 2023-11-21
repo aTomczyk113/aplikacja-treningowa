@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\CompletedExercise;
+
 
 class User extends Authenticatable
 {
@@ -42,4 +44,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function completed_exercises()
+    {
+        return $this->hasMany(CompletedExercise::class);
+    }
+
+    public function markExerciseAsCompleted($exerciseId)
+    {
+        $completedExercise = new CompletedExercise;
+        $completedExercise->user_id = $this->id;
+        $completedExercise->exercise_id = $exerciseId;
+        $completedExercise->save();
+    }
+
 }

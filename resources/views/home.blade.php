@@ -17,6 +17,9 @@
                     {{ __('You are logged in!') }}
 
                 </div>
+                <div class="text-center">
+                    <p>Liczba wykonanych ćwiczeń: <strong>{{ $exerciseCount }}</strong></p>
+                </div>
             </div>
         </div>
     </div>

@@ -11,8 +11,10 @@
                 <p>{{ $exercise->description }}</p>
 
                 <!-- Przycisk do pobrania następnego ćwiczenia -->
-                <a href="{{ route('showExercises', ['bodyPart' => $exercise->body_part_id, 'difficulty' => $exercise->difficulty_level_id]) }}" class="btn btn-primary">Następne ćwiczenie</a>
-
+                <form method="POST" action="{{ route('exercise.next', ['bodyPartId' => $exercise->body_part_id, 'difficultyLevelId' => $exercise->difficulty_level_id]) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Następne ćwiczenie</button>
+                </form>
                 <a href="{{ route('wybierz-trening') }}" class="btn btn-primary">Wróć</a>
             </div>
         </div>
