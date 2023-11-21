@@ -25,19 +25,16 @@ class TrainingController extends Controller
 
     public function plecy()
     {
-        // Tu umieść kod dla treningu pleców
         return view('plecy_trening');
     }
 
     public function nogi()
     {
-        // Tu umieść kod dla treningu nóg
         return view('nogi_trening');
     }
 
     public function biceps()
     {
-        // Tu umieść kod dla treningu bicepsa
         return view('biceps_trening');
     }
 
@@ -68,14 +65,28 @@ class TrainingController extends Controller
         ]);
     }
 
-    public function showExercises($bodyPart, $difficulty)
+    public function showExercises(Request $request, $bodyPart, $difficulty)
     {
-        // Pobierz jedno ćwiczenie
+        // Pobieranie wykonanych ćwiczeń z sesji
+        $completedExercises = $request->session()->get('completed_exercises', []);
+
+        // Pobranie losowego ćwiczenia, które jeszcze nie zostało wykonane
         $exercise = Exercise::where('body_part_id', $bodyPart)
             ->where('difficulty_level_id', $difficulty)
-            ->inRandomOrder()  // to losuje ćwiczenie
-            ->first(); // pobiera tylko jedno ćwiczenie
+            ->whereNotIn('id', $completedExercises)
+            ->inRandomOrder()
+            ->first();
 
-        return view('exercises', ['exercise' => $exercise]); // Zwróć widok z jednym ćwiczeniem
+        if ($exercise === null) {
+            // Jeżeli nie znaleziono ćwiczenia, oznacza to, że wszystkie już zostały wykonane
+            $request->session()->forget('completed_exercises');
+            return redirect()->route('chooseDifficulty', ['bodyPart' => $bodyPart]);
+        }
+
+        // Dodawanie ID ćwiczenia do sesji
+        $completedExercises[] = $exercise->id;
+        $request->session()->put('completed_exercises', $completedExercises);
+
+        return view('exercises', ['exercise' => $exercise]);
     }
 }

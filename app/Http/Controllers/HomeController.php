@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user(); // dostęp do aktualnie zalogowanego użytkownika
+        $exerciseCount = $user->completed_exercises()->count();
+
+        return view('home', ['exerciseCount' => $exerciseCount]);
     }
 }

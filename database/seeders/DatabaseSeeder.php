@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BodyPartSeeder::class);
         $this->call(DifficultyLevelSeeder::class);
         $this->call(ExerciseSeeder::class);
+        $this->call(AdminUserSeeder::class);
     }
 }

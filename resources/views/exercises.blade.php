@@ -9,6 +9,12 @@
                 <!-- wyświetlanie jednego ćwiczenia -->
                 <h2>{{ $exercise->name }}</h2>
                 <p>{{ $exercise->description }}</p>
+
+                <!-- Przycisk do pobrania następnego ćwiczenia -->
+                <form method="POST" action="{{ route('exercise.next', ['bodyPartId' => $exercise->body_part_id, 'difficultyLevelId' => $exercise->difficulty_level_id]) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Następne ćwiczenie</button>
+                </form>
                 <a href="{{ route('wybierz-trening') }}" class="btn btn-primary">Wróć</a>
             </div>
         </div>

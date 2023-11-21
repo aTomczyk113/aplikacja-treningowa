@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingController;
-
+use App\Http\Controllers\ExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use App\Http\Controllers\TrainingController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -28,3 +28,9 @@ Route::get('/treningi', [TrainingController::class, 'index'])->name('wybierz-tre
 Route::get('/treningi/{bodyPart}', [TrainingController::class, 'showBodyPartExercises'])->middleware('auth')->name('showBodyPartExercises');
 
 Route::get('/cwiczenia/{bodyPart}/{difficulty}', [TrainingController::class, 'showExercises'])->middleware('auth')->name('showExercises');
+
+Route::get('/exercises/{bodyPart}/{difficulty}', [TrainingController::class, 'showExercises'])->name('showExercises');
+
+Route::get('/chooseDifficulty/{bodyPart}', [TrainingController::class, 'chooseDifficulty'])->name('chooseDifficulty');
+
+Route::post('/exercise/next/{bodyPartId}/{difficultyLevelId}', [ExerciseController::class, 'nextExercise'])->name('exercise.next')->middleware('auth');

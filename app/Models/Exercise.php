@@ -9,11 +9,23 @@ class Exercise extends Model
 {
     use HasFactory;
 
-    public function bodyPart() {
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
+
+    public function training()
+    {
+        return $this->belongsTo(Training::class);
+    }
+
+    public function bodyPart()
+    {
         return $this->belongsTo(BodyPart::class);
     }
 
-    public function difficultyLevel() {
+    public function difficultyLevel()
+    {
         return $this->belongsTo(DifficultyLevel::class);
     }
 }
