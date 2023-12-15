@@ -1,0 +1,32 @@
+footer,header{
+    background-color: #111111;
+    color: white;
+}
+header{
+    border-bottom: 1px solid #707070;
+}
+footer{
+    border-top: 1px solid #707070;
+}
+.App{
+    background-color: #111111;
+    color: white;
+}
+.justify-center{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+header a{
+    color: white;
+    text-decoration: none;
+}
+.homePage img{
+    max-height: 400px;
+object-fit: contain;
+}
+.homePage .hero-section img{
+    max-height: 600px;
+    float: right;
+}

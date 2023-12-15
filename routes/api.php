@@ -23,3 +23,9 @@ Route::resource('body-parts', 'BodyPartController');
 Route::resource('difficulty-levels', 'DifficultyLevelController');
 Route::middleware(['auth'])->post('/training-results', 'TrainingResultController@store');
 
+Route::get('/example', 'ExampleController@index');
+
+
+Route::get('/example', function () {
+    return response()->json(['message' => 'To jest przykładowa odpowiedź z Laravela'], 200);
+});
