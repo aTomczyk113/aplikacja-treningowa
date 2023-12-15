@@ -78,3 +78,75 @@ height: 30px;
     line-height: 40px;
     padding-left: 10px;
 }
+.registration,.login{
+    background-color: white;
+}
+.registration input{
+    border: 1px solid black;
+    color: black;
+}
+.registration{
+    color: black;
+}
+.registration input::placeholder{
+    color: black;
+}
+.login input{
+    border: 1px solid black;
+    color: black;
+
+}
+.login .form-group{
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+}
+.login{
+    color: black;
+    margin: 40px auto;
+    padding: 60px 0px;
+}
+.registration{
+    color: black;
+    margin: 40px auto;
+    padding: 60px 0px;
+}
+.login input::placeholder{
+    color: black;
+}
+.registration .form-group{
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+}
+.registration .btn{
+    background-color: black;
+    margin: 0 auto;
+    display: block;
+    border: 0px;
+    box-shadow: 0px;
+    border-radius: 0px !important;
+}
+.login .btn{
+    background-color: black;
+    margin: 0 auto;
+    display: block;
+    border: 0px;
+    box-shadow: 0px;
+    border-radius: 0px !important;
+
+}
+.login .btn:hover{
+    background-color: #f79518;
+}
+.registration .btn:hover{
+    background-color: #f79518;
+}
+.login .logo-image{
+    margin: 0 auto;
+    display: block;
+}
+.registration .logo-image{
+    margin: 0 auto;
+    display: block;
+}
