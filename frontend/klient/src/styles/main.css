@@ -30,3 +30,51 @@ object-fit: contain;
     max-height: 600px;
     float: right;
 }
+.exerciseSelection button{
+    width: 100%;
+    background-color: white;
+    color: black;
+    border-radius: 0px;
+    border: 0px;
+    height: 60px;
+}
+.exerciseSelection button:hover{
+    background-color: #f79518;
+}
+.evelExercise{
+    margin-bottom: 40px;
+}
+.levelExercise button{
+    width: 100%;
+    background-color: white;
+    color: black;
+    border-radius: 0px;
+    border: 0px;
+    height: 60px;
+}
+.levelExercise button:hover{
+    background-color: #f79518;
+}
+.levelExercise{
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+.exerciseList input{
+    border: 0px;
+    box-shadow: unset;
+height: 30px;
+    width: 30px;
+    border-radius: 0px !important;
+}
+.exerciseList input:checked{
+    background-color: #f79518;
+    border: 0px;
+    box-shadow: unset;
+}
+.form-check {
+    height: 50px;
+}
+.form-check label{
+    line-height: 40px;
+    padding-left: 10px;
+}
