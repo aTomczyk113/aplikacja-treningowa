@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function ExerciseList() {
-    const [exercises, setExercises] = useState([
-        { id: 1, name: 'Ćwiczenie 1', completed: false },
-        { id: 2, name: 'Ćwiczenie 2', completed: false },
-        { id: 3, name: 'Ćwiczenie 3', completed: false },
-        { id: 4, name: 'Ćwiczenie 4', completed: false },
-        { id: 5, name: 'Ćwiczenie 5', completed: false },
-    ]);
-
+    const [exercises, setExercises] = useState([]);
     const [completedCount, setCompletedCount] = useState(0);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/api/exercises');
+                setExercises(response.data.slice(0, 5)); // Ograniczenie do pięciu ćwiczeń
+            } catch (error) {
+                console.error('Błąd:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const handleCheckboxChange = (exerciseId) => {
         const updatedExercises = exercises.map((exercise) =>

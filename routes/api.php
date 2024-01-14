@@ -27,3 +27,4 @@ Route::get('/body_parts', 'App\Http\Controllers\Api\AllDataController@getAllBody
 Route::get('/difficulty_levels', 'App\Http\Controllers\Api\AllDataController@getAllDifficultyLevels');
 Route::get('/users', 'App\Http\Controllers\Api\AllDataController@getAllUsers');
 
+Route::get('/all-data', 'App\Http\Controllers\Api\AllDataController@index');
