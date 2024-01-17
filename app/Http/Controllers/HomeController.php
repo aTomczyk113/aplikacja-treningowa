@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,13 @@ class HomeController extends Controller
         $user = auth()->user(); // dostęp do aktualnie zalogowanego użytkownika
         $exerciseCount = $user->completed_exercises()->count();
 
-        return view('home', ['exerciseCount' => $exerciseCount]);
+        // Top performers query
+        $topPerformers = User::withCount('completed_exercises')
+            ->orderBy('completed_exercises_count', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('home', ['exerciseCount' => $exerciseCount, 'topPerformers' => $topPerformers]);
     }
 }
+
