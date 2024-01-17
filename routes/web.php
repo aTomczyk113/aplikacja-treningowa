@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/top-performers', [HomeController::class, 'getTopPerformers'])->name('top-performers');
 
 Route::get('/treningi', [TrainingController::class, 'index'])->name('wybierz-trening')->middleware('auth');
 
