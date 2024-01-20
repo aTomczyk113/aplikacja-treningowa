@@ -150,3 +150,28 @@ height: 30px;
     margin: 0 auto;
     display: block;
 }
+
+.form-check-label {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tooltip{
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    z-index: 999 !important;
+    color: black;
+    border-radius: 25px;
+}
+.exercise_label:hover + .tooltip{
+    opacity: 1 !important;
+}
+.container {
+    padding: 60px 0px;
+}
+.congrats-popup{
+    background-color: white;
+color: black;
+    padding: 20px;
+    border-radius: 25px;
+}
