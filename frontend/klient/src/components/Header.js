@@ -51,7 +51,7 @@ function Header({ onViewChange }) {
                             </g>
                         </g>
                     </svg>
-                    <p className="col-12">Statystyki</p>
+                    <p className="col-12">Twój profil</p>
                 </a>
             </div>
         </header>

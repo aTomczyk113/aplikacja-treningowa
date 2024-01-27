@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/main.css';
+import xImg from '../imgs/x.svg';
+import homeImg1 from "../imgs/home2.jpg";
+
 
 function ExerciseList({ selectedBodyPart, selectedLevel }) {
     const [exercises, setExercises] = useState([]);
@@ -16,7 +19,7 @@ function ExerciseList({ selectedBodyPart, selectedLevel }) {
                     (exercise) =>
                         exercise.body_part_id === selectedBodyPart && exercise.difficulty_level_id === selectedLevel
                 );
-                setExercises(filteredExercises.slice(0, 5));
+                setExercises(filteredExercises.slice(0, 8));
             } catch (error) {
                 console.error('Błąd:', error);
             }
@@ -76,34 +79,36 @@ function ExerciseList({ selectedBodyPart, selectedLevel }) {
     return (
         <div className="container exerciseList">
             <h1 className="text-center mb-4">Lista Ćwiczeń do Wykonania</h1>
-            {exercises.map((exercise) => (
-                <div
-                    className="form-check mb-2"
-                    key={exercise.id}
-                    onMouseEnter={() => handleMouseEnter(exercise.id)}
-                    onMouseLeave={() => handleMouseLeave(exercise.id)}
-                >
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id={`exercise-${exercise.id}`}
-                        checked={exercise.completed}
-                        onChange={() => handleCheckboxChange(exercise.id)}
-                    />
-                    <label className="form-check-label ml-2" htmlFor={`exercise-${exercise.id}`}>
-                        <span className="exercise_label">{exercise.name}</span>
-                        <span id={`tooltip-${exercise.id}`} className="tooltip">
+          <div className="exercisesContainer">
+              {exercises.map((exercise) => (
+                  <div
+                      className="form-check mb-2"
+                      key={exercise.id}
+                      onMouseEnter={() => handleMouseEnter(exercise.id)}
+                      onMouseLeave={() => handleMouseLeave(exercise.id)}
+                  >
+                      <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={`exercise-${exercise.id}`}
+                          checked={exercise.completed}
+                          onChange={() => handleCheckboxChange(exercise.id)}
+                      />
+                      <label className="form-check-label ml-2" htmlFor={`exercise-${exercise.id}`}>
+                          <span className="exercise_label">{exercise.name}</span>
+                          <span id={`tooltip-${exercise.id}`} className="tooltip">
                             {exercise.description}
                         </span>
-                    </label>
-                </div>
-            ))}
+                      </label>
+                  </div>
+              ))}
+          </div>
             <p className="text-center mt-4">
                 Wykonane: {completedCount}/{exercises.length}
             </p>
             {showCongratsPopup && (
                 <div className="congrats-popup">
-                    <p>Congratulations, kowboju! Wykonałeś wszystkie zadania!</p>
+                    <p>Gratulacje, Rambo! Wykonałeś wszystkie zadania!</p>
                     <p>Dodatkowe Ćwiczenia:</p>
                     {additionalExercises.map((exercise) => (
                         <div key={`additional-${exercise.id}`}>
@@ -116,7 +121,7 @@ function ExerciseList({ selectedBodyPart, selectedLevel }) {
                             </label>
                         </div>
                     ))}
-                    <button onClick={closeCongratsPopup}>Zamknij</button>
+                    <button onClick={closeCongratsPopup}>   <img src={xImg}alt="Zdjęcie" className="img-fluid" /></button>
                 </div>
             )}
         </div>
