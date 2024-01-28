@@ -36,7 +36,6 @@ object-fit: contain;
     color: black;
     border-radius: 0px;
     border: 0px;
-    height: 60px;
 }
 .exerciseSelection button:hover{
     background-color: #f79518;
@@ -104,7 +103,7 @@ height: 30px;
 .login{
     color: black;
     margin: 40px auto;
-    padding: 60px 0px;
+    padding: 30px 0px;
 }
 .registration{
     color: black;
@@ -174,4 +173,125 @@ height: 30px;
 color: black;
     padding: 20px;
     border-radius: 25px;
+}
+
+.congrats-popup p{
+    text-align: center;
+    font-size: 20px;
+}
+.congrats-popup{
+    position: absolute;
+    top: 20%;
+    left: 25%;
+}
+.exerciseList{
+    position: relative;
+}
+.congrats-popup input:checked {
+    background-color: #f79518 !important;
+    border: 0px;
+    box-shadow: unset;
+}
+.exercise_label{
+    margin-left:10px;
+}
+.congrats-popup .tooltip{
+    background-color: black;
+    color: white;
+}
+.congrats-popup  button{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    background-color: unset;
+    border:unset;
+}
+.congrats-popup  button img{
+    max-width: 20px;
+}
+.statiscticContainer{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+    color: black;
+    padding: 30px 10px;
+    border-radius: 20px;
+}
+
+.login{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 20px;
+}
+.login .logo-image{
+    max-height: 100px;
+}
+.logo-image{
+    max-height: 75px;
+}
+
+.homePage img{
+    border-radius: 25px;
+}
+
+.chooseExerciseBox button{
+    padding: 20px 10px;
+    border-radius: 20px;
+}
+ button:active{
+    background-color: #f79518 !important;
+}
+
+ .chooseExerciseBox span{
+     width: 100%;
+     display: block;
+     font-weight: bold;
+ }
+
+ .exerciseSelectionContainer{
+     max-width: 1000px;
+     margin: 0 auto !important;
+ }
+.container{
+    min-height: 80vh;
+}
+@font-face {
+    font-family: 'Didact Gothic';
+    src: url('DidactGothic-Regular.ttf') format('woff2'),
+    url('DidactGothic-Regular.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'Didact Gothic', sans-serif !important;
+}
+.login{
+    max-width: 700px;
+}
+.login input{
+    box-shadow: unset !important;
+    outline: unset !important;
+border: 1px solid black !important;
+}
+
+.statistcText{
+    font-size: 22px;
+}
+.statistcText span{
+    color: #f79518;
+    font-weight: bold;
+}
+.statiscticContainer{
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+.exercisesContainer{
+    max-width: 600px;
+    margin: 0 auto;
+}
+.datePicker {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.datePicker span{
+    color: #f79518;
 }

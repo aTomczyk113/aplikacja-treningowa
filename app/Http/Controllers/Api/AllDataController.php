@@ -15,7 +15,7 @@ class AllDataController extends Controller
     {
         $exercises = Exercise::all();
         $bodyParts = BodyPart::all();
-        $difficultyLevels = DifficultyLevel::all();
+        $difficultyLevels = cd::all();
         $users = User::all();
 
         return response()->json([
