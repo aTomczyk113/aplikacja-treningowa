@@ -4,14 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('exercises', 'ExerciseController');
-Route::resource('body-parts', 'BodyPartController');
-Route::resource('difficulty-levels', 'DifficultyLevelController');
-Route::middleware(['auth'])->post('/training-results', 'TrainingResultController@store');
+
 
 Route::get('/example', 'ExampleController@index');
 
@@ -28,3 +26,5 @@ Route::get('/difficulty_levels', 'App\Http\Controllers\Api\AllDataController@get
 Route::get('/users', 'App\Http\Controllers\Api\AllDataController@getAllUsers');
 
 Route::get('/all-data', 'App\Http\Controllers\Api\AllDataController@index');
+
+Route::get('/top-performers', 'App\Http\Controllers\Api\AllDataController@getTopPerformers');
