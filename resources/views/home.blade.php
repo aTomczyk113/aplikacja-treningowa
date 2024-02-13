@@ -42,6 +42,7 @@
                         <p>Liczba wykonanych ćwiczeń: <strong>{{ $exerciseCount }}</strong></p>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </div>

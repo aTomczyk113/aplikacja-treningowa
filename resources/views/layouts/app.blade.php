@@ -50,6 +50,16 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                                <a id="exerciseDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" v-pre>
+                                    Ćwiczenia
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="exerciseDropdown">
+                                    <a class="dropdown-item" href="{{ route('exercises.indexView') }}">Lista ćwiczeń</a>
+                                    <a class="dropdown-item" href="{{ route('exercises.createView') }}">Nowe</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>

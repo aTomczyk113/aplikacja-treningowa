@@ -37,3 +37,17 @@ Route::get('/exercises/{bodyPart}/{difficulty}', [TrainingController::class, 'sh
 Route::get('/chooseDifficulty/{bodyPart}', [TrainingController::class, 'chooseDifficulty'])->name('chooseDifficulty');
 
 Route::post('/exercise/next/{bodyPartId}/{difficultyLevelId}', [ExerciseController::class, 'nextExercise'])->name('exercise.next')->middleware('auth');
+
+Route::get('/exercises', 'App\Http\Controllers\ExerciseController@index');
+Route::get('/exercise/create', 'App\Http\Controllers\ExerciseController@create');
+Route::post('/exercise/store', 'App\Http\Controllers\ExerciseController@store');
+Route::get('/exercise/edit/{id}', 'App\Http\Controllers\ExerciseController@editView');
+Route::post('/exercise/update/{id}', 'App\Http\Controllers\ExerciseController@update');
+Route::delete('/exercise/delete/{id}', 'App\Http\Controllers\ExerciseController@destroy');
+
+Route::get('/exercisesView', 'App\Http\Controllers\ExerciseController@indexView')->name('exercises.indexView');
+Route::get('/exercisesView/create', 'App\Http\Controllers\ExerciseController@createView')->name('exercises.createView');
+Route::post('/exercisesView/store', 'App\Http\Controllers\ExerciseController@storeView')->name('exercises.storeView');
+Route::get('/exercisesView/edit/{id}', 'App\Http\Controllers\ExerciseController@editView')->name('exercises.editView');
+Route::put('/exercisesView/update/{id}', 'App\Http\Controllers\ExerciseController@updateView')->name('exercises.updateView');
+Route::delete('/exercisesView/delete/{id}', 'App\Http\Controllers\ExerciseController@destroyView')->name('exercises.destroyView');

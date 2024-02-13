@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/all_data": {
+            "get": {
+                "operationId": "799eea304d014beda69c31c1d31ce633",
+                "responses": {
+                    "200": {
+                        "description": "Get All Data"
+                    }
+                }
+            }
+        },
+        "/api/stats": {
+            "get": {
+                "operationId": "8a4fa84a34af1f71e62d0875dacde652",
+                "responses": {
+                    "200": {
+                        "description": "Get Statistics"
+                    }
+                }
+            }
+        },
+        "/api/exercises": {
+            "get": {
+                "operationId": "6d1607c0ca5080364b4e53356b380e70",
+                "responses": {
+                    "200": {
+                        "description": "Get All Exercises"
+                    }
+                }
+            }
+        },
+        "/api/body_parts": {
+            "get": {
+                "operationId": "8816b7990101d0376077733f57eac141",
+                "responses": {
+                    "200": {
+                        "description": "Get All Body Parts"
+                    }
+                }
+            }
+        },
+        "/api/difficulty_levels": {
+            "get": {
+                "operationId": "32c99ece914be22ba3e8d10ba3bc2378",
+                "responses": {
+                    "200": {
+                        "description": "Get All Difficulty Levels"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "operationId": "cea0cf11e6ccd0c8a260450bf408923b",
+                "responses": {
+                    "200": {
+                        "description": "Get All Users"
+                    }
+                }
+            }
+        },
+        "/api/top-performers": {
+            "get": {
+                "operationId": "ca4e8f08eb5014ddd8a62d0a6c848bef",
+                "responses": {
+                    "200": {
+                        "description": "Get Top Performers"
+                    }
+                }
+            }
+        }
+    }
+}
