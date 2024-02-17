@@ -17,7 +17,7 @@ class AllDataController extends Controller
     {
         $exercises = Exercise::all();
         $bodyParts = BodyPart::all();
-        $difficultyLevels = cd::all();
+        $difficultyLevels = DifficultyLevel::all();
         $users = User::all();
 
         return response()->json([
@@ -99,6 +99,19 @@ class AllDataController extends Controller
         });
         echo "Basic Email Sent. Check your inbox.";
 
+    }
+
+
+    public function getTopPerformers()
+    {
+        $topPerformers = User::withCount('completed_exercises')
+            ->orderBy('completed_exercises_count', 'desc')
+            ->take(10)
+            ->get();
+
+        return response()->json([
+            'topPerformers' => $topPerformers
+        ]);
     }
 
 }
