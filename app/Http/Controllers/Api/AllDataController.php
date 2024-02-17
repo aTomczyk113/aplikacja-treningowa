@@ -79,25 +79,46 @@ class AllDataController extends Controller
         return $total;
     }
 
-    public function sendEmailWith(Request $request){
+    public function sendEmailWith(Request $request)
+    {
         $userid = $request->input("userId");
 //        $userid = 4;
         $topPerformers = User::withCount('completed_exercises')
-            ->where("id",$userid)
+            ->where("id", $userid)
             ->get();
-        $total =$topPerformers[0]->completed_exercises_count;
+        $total = $topPerformers[0]->completed_exercises_count;
 //    $total = 9;
         $emailText = "Hej, wykonałeś już $total ćwiczeń!";
         $title = "Twoje statystyki.";
 
 
-
-        Mail::send(['text'=>'mail'], ["emailText"=>$emailText, "title"=>$title], function($message) {
+        Mail::send(['text' => 'mail'], ["emailText" => $emailText, "title" => $title], function ($message) {
             $message->to('bpoborowski@gmail.com', 'Tutorials Point')->subject
             ('Laravel Basic Testing Mail');
-            $message->from('trening@obrazomania.pl','Virat Gandhi');
+            $message->from('trening@obrazomania.pl', 'Virat Gandhi');
         });
         echo "Basic Email Sent. Check your inbox.";
+    }
+
+    public function createNewExercise(Request $request){
+        $name = $request->input("name");
+        $desc = $request->input("description");
+        $body_part_id = $request->input("body_part_id");
+        $difficulty_level_id = $request->input("difficulty_level_id");
+        $idForEdit = $request->input("id") ? $request->input("id") : false;
+
+        if($idForEdit){
+            $newExercise = Exercise::findOrFail($idForEdit);
+        } else {
+            $newExercise = new Exercise();
+        }
+        $newExercise->name = $name;
+        $newExercise->description = $desc;
+        $newExercise->body_part_id = $body_part_id;
+        $newExercise->difficulty_level_id = $difficulty_level_id;
+        $newExercise->save();
+
+        return $newExercise;
 
     }
 

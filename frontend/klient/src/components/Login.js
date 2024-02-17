@@ -7,6 +7,21 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState("");
 
+    const [name,setName] = useState("nowecwiczenie");
+    const [description,setdescription] = useState("opis nowego cwiczniea");
+    const [body_part_id,setbody_part_id] = useState("1");
+    const [difficulty_level_id,setdifficulty_level_id] = useState("1");
+
+    async function createNewExercise(e){
+        e.preventDefault();
+        const response = await axios.post('http://localhost:8000/api/createNewExercise',{
+            name,
+            description,
+            body_part_id,
+            difficulty_level_id,
+        });
+    }
+
     async function  sendData(e){
         e.preventDefault();
         const response = await axios.post('http://localhost:8000/api/login',{
@@ -31,6 +46,11 @@ function Login() {
               {email}
               {password}
               <img src={logoImage} alt="Logo" className="logo-image" />
+
+             <button onClick={createNewExercise}>Stworz nowe ciwczenie
+             </button>
+
+
               <h2 className="text-center mb-4">Logowanie</h2>
               <form>
                   <div className="form-group mt-4">

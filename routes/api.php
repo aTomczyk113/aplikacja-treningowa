@@ -37,3 +37,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post("/add-new-statistic-to-user", 'App\Http\Controllers\Api\AllDataController@addNewStatToUser');
 Route::post("/get-total-done-excercises", 'App\Http\Controllers\Api\AllDataController@getTotalDoneExcercise');
 Route::post("/sendEmailWith", 'App\Http\Controllers\Api\AllDataController@sendEmailWith');
+
+Route::post("/createNewExercise", 'App\Http\Controllers\Api\AllDataController@createNewExercise');
