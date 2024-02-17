@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Home from './components/Home';
 import ExerciseSelection from './components/ExerciseSelection';
 import LevelExercise from './components/LevelExercise';
@@ -32,6 +32,14 @@ function App() {
         setSelectedLevel(null);
         setSelectedView(view);
     };
+
+    useEffect(()=>{
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var page = url.searchParams.get("page");
+        setSelectedView(page)
+    },[])
+
 
     return (
         <div className="App">

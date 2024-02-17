@@ -4,8 +4,19 @@ import homeImg1 from '../imgs/home3.jpg';
 import homeImg2 from '../imgs/home2.jpg';
 
 function Home() {
+
+    function checkUserIsLoggedAndShow(){
+       const isLogged =  localStorage.getItem("isLogged");
+       const userName = localStorage.getItem("userName");
+
+       return isLogged ? (
+           <p>Cześć, {userName}!</p>
+       ) : "Zaloguj się";
+    }
+
     return (
         <div className="container homePage">
+            {checkUserIsLoggedAndShow()}
             <section className="hero-section  pt-5 pb-5 ">
                 <div className="row justify-center">
                     <div className="col-md-6">

@@ -48,13 +48,21 @@ function ExerciseList({ selectedBodyPart, selectedLevel }) {
         fetchAdditionalExercises();
     }, [selectedBodyPart, selectedLevel, exercises]);
 
-    const handleCheckboxChange = (exerciseId) => {
+    const  handleCheckboxChange = async (exerciseId) => {
         const updatedExercises = exercises.map((exercise) =>
             exercise.id === exerciseId ? { ...exercise, completed: !exercise.completed } : exercise
         );
         const newCompletedCount = updatedExercises.filter((exercise) => exercise.completed).length;
         setExercises(updatedExercises);
         setCompletedCount(newCompletedCount);
+
+        const userId = localStorage.getItem("userId");
+        const response = await axios.post('http://localhost:8000/api/add-new-statistic-to-user',{
+            excerciseId:exerciseId,
+            userId
+        });
+
+        console.log(response);
 
         // Sprawdzamy, czy wszystkie ćwiczenia zostały wykonane
         if (newCompletedCount === exercises.length) {
