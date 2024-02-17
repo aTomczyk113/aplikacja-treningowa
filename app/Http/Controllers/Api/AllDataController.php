@@ -8,6 +8,8 @@ use App\Models\CompletedExercise;
 use App\Models\DifficultyLevel;
 use App\Models\Exercise;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Mail;
 
 class AllDataController extends Controller
 {
@@ -56,4 +58,47 @@ class AllDataController extends Controller
 
         return response()->json($users);
     }
+
+    public function addNewStatToUser(Request $request){
+        $excerciseId = $request->input("excerciseId");
+        $userId = $request->input("userId");
+        $user = User::findOrFail($userId);
+        $completedExercise = new CompletedExercise();
+        $completedExercise->user_id = $userId;
+        $completedExercise->exercise_id = $excerciseId;
+        $completedExercise->save();
+        return true;
+    }
+
+    public function getTotalDoneExcercise(Request $request){
+           $userid = $request->input("userId");
+            $topPerformers = User::withCount('completed_exercises')
+            ->where("id",$userid)
+            ->get();
+        $total =$topPerformers[0]->completed_exercises_count;
+        return $total;
+    }
+
+    public function sendEmailWith(Request $request){
+        $userid = $request->input("userId");
+//        $userid = 4;
+        $topPerformers = User::withCount('completed_exercises')
+            ->where("id",$userid)
+            ->get();
+        $total =$topPerformers[0]->completed_exercises_count;
+//    $total = 9;
+        $emailText = "Hej, wykonałeś już $total ćwiczeń!";
+        $title = "Twoje statystyki.";
+
+
+
+        Mail::send(['text'=>'mail'], ["emailText"=>$emailText, "title"=>$title], function($message) {
+            $message->to('bpoborowski@gmail.com', 'Tutorials Point')->subject
+            ('Laravel Basic Testing Mail');
+            $message->from('trening@obrazomania.pl','Virat Gandhi');
+        });
+        echo "Basic Email Sent. Check your inbox.";
+
+    }
+
 }

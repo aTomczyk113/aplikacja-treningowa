@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -28,3 +29,11 @@ Route::get('/difficulty_levels', 'App\Http\Controllers\Api\AllDataController@get
 Route::get('/users', 'App\Http\Controllers\Api\AllDataController@getAllUsers');
 
 Route::get('/all-data', 'App\Http\Controllers\Api\AllDataController@index');
+
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post("/add-new-statistic-to-user", 'App\Http\Controllers\Api\AllDataController@addNewStatToUser');
+Route::post("/get-total-done-excercises", 'App\Http\Controllers\Api\AllDataController@getTotalDoneExcercise');
+Route::post("/sendEmailWith", 'App\Http\Controllers\Api\AllDataController@sendEmailWith');
