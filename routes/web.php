@@ -37,3 +37,5 @@ Route::get('/exercises/{bodyPart}/{difficulty}', [TrainingController::class, 'sh
 Route::get('/chooseDifficulty/{bodyPart}', [TrainingController::class, 'chooseDifficulty'])->name('chooseDifficulty');
 
 Route::post('/exercise/next/{bodyPartId}/{difficultyLevelId}', [ExerciseController::class, 'nextExercise'])->name('exercise.next')->middleware('auth');
+
+

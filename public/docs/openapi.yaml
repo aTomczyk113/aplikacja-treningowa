@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: 'TRAINING API Documentation'
+  contact:
+    email: info@yeagger.com
+  version: '0.1'
+servers:
+  -
+    url: 'http://trenujemy.test/api/'
+    description: 'Learning env'
+paths:
+  /api/all-data/:
+    get:
+      operationId: d11f92e226d051a9fafc2244f4541c07
+      responses:
+        '200':
+          description: 'Fetch all data'
+  /api/all-data/stats:
+    get:
+      operationId: f460117d483c0c2cc07de86d79697162
+      responses:
+        '200':
+          description: 'Fetch stats'
+  /api/all-data/exercises:
+    get:
+      operationId: 74fc47beb482e26182265cb4d53e3c27
+      responses:
+        '200':
+          description: 'Fetch all exercises'
+  /api/all-data/body-parts:
+    get:
+      operationId: c25ed52c6a8c1896723fef78228bca88
+      responses:
+        '200':
+          description: 'Fetch all body parts'
+  /api/all-data/difficulty-levels:
+    get:
+      operationId: 2ea637518b150b1845192885ee9e8b5c
+      responses:
+        '200':
+          description: 'Fetch all difficulty levels'
+  /api/all-data/users:
+    get:
+      operationId: b624265dc03127dc5e61a98ec2a60788
+      responses:
+        '200':
+          description: 'Fetch all users'
+  /api/all-data/new-stat:
+    post:
+      operationId: 1852c5ce0817cd624a295c9cc049e5d0
+      responses:
+        '200':
+          description: 'Add new stat to user'
+  /api/all-data/total-done-exercise:
+    get:
+      operationId: 8aebf09795210e96e436174bf02a223d
+      responses:
+        '200':
+          description: 'Fetch total done exercise for a specific user'
+  /api/all-data/send-email:
+    post:
+      operationId: b79f1c1886781317f554d5b7dc448568
+      responses:
+        '200':
+          description: 'Send email with total done exercises to a user'
+  /api/all-data/create-exercise:
+    post:
+      operationId: 7c32360470856e8be1bb5459c3aff3cc
+      responses:
+        '200':
+          description: 'Create a new exercise'
+  '/api/all-data/delete-exercise/{id}':
+    delete:
+      operationId: 3309303fab010b82448191082a591c54
+      responses:
+        '200':
+          description: 'Delete an exercise'
+  /api/all-data/top-performers:
+    get:
+      operationId: f5b6f547c45693c7d9ce50ad984804c9
+      responses:
+        '200':
+          description: 'Get top performers'

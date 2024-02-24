@@ -11,8 +11,27 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Mail;
 
+/**
+ * @OA\Info(
+ *     title="My First API Documentation",
+ *     version="0.1",
+ *     @OA\Contact(
+ *         email="info@yeagger.com"
+ *     ),
+ * )
+ * @OA\Server(
+ *     description="Learning env",
+ *     url="http://trenujemy.test/api/"
+ *  )
+ */
 class AllDataController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/",
+     *     @OA\Response(response="200", description="Fetch all data")
+     * )
+     */
     public function index()
     {
         $exercises = Exercise::all();
@@ -28,6 +47,12 @@ class AllDataController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/stats",
+     *     @OA\Response(response="200", description="Fetch stats")
+     * )
+     */
     public function stats()
     {
         $stats = CompletedExercise::selectRaw('user_id, count(*) as exercise_count')
@@ -37,21 +62,45 @@ class AllDataController extends Controller
         return response()->json($stats);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/exercises",
+     *     @OA\Response(response="200", description="Fetch all exercises")
+     * )
+     */
     public function getAllExercises()
     {
         return Exercise::all();
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/body-parts",
+     *     @OA\Response(response="200", description="Fetch all body parts")
+     * )
+     */
     public function getAllBodyParts()
     {
         return BodyPart::all();
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/difficulty-levels",
+     *     @OA\Response(response="200", description="Fetch all difficulty levels")
+     * )
+     */
     public function getAllDifficultyLevels()
     {
         return DifficultyLevel::all();
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/users",
+     *     @OA\Response(response="200", description="Fetch all users")
+     * )
+     */
     public function getAllUsers()
     {
         $users = User::all();
@@ -59,6 +108,12 @@ class AllDataController extends Controller
         return response()->json($users);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/all-data/new-stat",
+     *     @OA\Response(response="200", description="Add new stat to user")
+     * )
+     */
     public function addNewStatToUser(Request $request){
         $excerciseId = $request->input("excerciseId");
         $userId = $request->input("userId");
@@ -70,15 +125,27 @@ class AllDataController extends Controller
         return true;
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/total-done-exercise",
+     *     @OA\Response(response="200", description="Fetch total done exercise for a specific user")
+     * )
+     */
     public function getTotalDoneExcercise(Request $request){
-           $userid = $request->input("userId");
-            $topPerformers = User::withCount('completed_exercises')
+        $userid = $request->input("userId");
+        $topPerformers = User::withCount('completed_exercises')
             ->where("id",$userid)
             ->get();
         $total =$topPerformers[0]->completed_exercises_count;
         return $total;
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/all-data/send-email",
+     *     @OA\Response(response="200", description="Send email with total done exercises to a user")
+     * )
+     */
     public function sendEmailWith(Request $request)
     {
         $userid = $request->input("userId");
@@ -100,6 +167,12 @@ class AllDataController extends Controller
         echo "Basic Email Sent. Check your inbox.";
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/all-data/create-exercise",
+     *     @OA\Response(response="200", description="Create a new exercise")
+     * )
+     */
     public function createNewExercise(Request $request) {
         $name = $request->input("name");
         $desc = $request->input("description");
@@ -121,6 +194,12 @@ class AllDataController extends Controller
         return $exercise;
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/all-data/delete-exercise/{id}",
+     *     @OA\Response(response="200", description="Delete an exercise")
+     * )
+     */
     public function deleteExercise($id) {
         $exercise = Exercise::findOrFail($id);
         $exercise->delete();
@@ -128,8 +207,12 @@ class AllDataController extends Controller
         return response()->json(["message" => "Exercise deleted successfully"], 200);
     }
 
-
-
+    /**
+     * @OA\Get(
+     *     path="/api/all-data/top-performers",
+     *     @OA\Response(response="200", description="Get top performers")
+     * )
+     */
     public function getTopPerformers()
     {
         $topPerformers = User::withCount('completed_exercises')
