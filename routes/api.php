@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\AllDataController;
 
 
 
@@ -10,7 +11,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::resource('exercises', 'ExerciseController');
+Route::resource('body-parts', 'BodyPartController');
+Route::resource('difficulty-levels', 'DifficultyLevelController');
+Route::middleware(['auth'])->post('/training-results', 'TrainingResultController@store');
 
 Route::get('/example', 'ExampleController@index');
 
@@ -29,7 +33,6 @@ Route::get('/users', 'App\Http\Controllers\Api\AllDataController@getAllUsers');
 Route::get('/all-data', 'App\Http\Controllers\Api\AllDataController@index');
 
 
-
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -37,5 +40,9 @@ Route::post("/add-new-statistic-to-user", 'App\Http\Controllers\Api\AllDataContr
 Route::post("/get-total-done-excercises", 'App\Http\Controllers\Api\AllDataController@getTotalDoneExcercise');
 Route::post("/sendEmailWith", 'App\Http\Controllers\Api\AllDataController@sendEmailWith');
 
-Route::get('/top-performers', 'App\Http\Controllers\Api\AllDataController@getTopPerformers');
+Route::post("/createNewExercise", 'App\Http\Controllers\Api\AllDataController@createNewExercise');
+Route::get('/getTopPerformers', [AllDataController::class, 'getTopPerformers']);
+Route::post('/register', [AuthController::class, 'register']);
+
+
 

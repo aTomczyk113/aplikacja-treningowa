@@ -7,6 +7,8 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState("");
 
+
+
     async function  sendData(e){
         e.preventDefault();
         const response = await axios.post('http://localhost:8000/api/login',{
@@ -19,7 +21,14 @@ function Login() {
         const userName = response?.data?.user?.name ? response?.data?.user?.name : "";
         localStorage.setItem("isLogged", isLogged);
         localStorage.setItem("userName", userName);
-        localStorage.setItem("userId", userId)
+        localStorage.setItem("userId", userId);
+
+        if(userName == "bartek"){
+            localStorage.setItem("userRole", "admin");
+        } else {
+            localStorage.setItem("userRole", "client");
+        }
+
         if(isLogged && userName){
             return window.location.href = "http://localhost:3000/?page=home";
         }
@@ -28,9 +37,12 @@ function Login() {
     return (
         <div className="container ">
           <div className="login">
-              {email}
-              {password}
+
               <img src={logoImage} alt="Logo" className="logo-image" />
+
+
+
+
               <h2 className="text-center mb-4">Logowanie</h2>
               <form>
                   <div className="form-group mt-4">

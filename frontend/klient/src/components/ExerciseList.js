@@ -121,7 +121,10 @@ function ExerciseList({ selectedBodyPart, selectedLevel }) {
                     {additionalExercises.map((exercise) => (
                         <div key={`additional-${exercise.id}`}>
                             <label className="form-check-label">
-                                <input type="checkbox" onChange={() => console.log('Zaznaczone dodatkowe ćwiczenie')} />
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                />
                                 <span className="exercise_label">{exercise.name}</span>
                                 <span id={`tooltip-additional-${exercise.id}`} className="tooltip">
                                     {exercise.description}
