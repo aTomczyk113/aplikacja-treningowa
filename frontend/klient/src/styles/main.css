@@ -381,3 +381,6 @@ color:white !important;
 .congrats-popup{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.helloUser{
+    text-align: center;
+}

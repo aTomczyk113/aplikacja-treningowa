@@ -79,6 +79,7 @@ function Header({ onViewChange }) {
                     </div>
                     <p className="col-12">Top 10</p>
                 </a>
+
                 {userRole == "admin" ? <ButtonPanelAdmin/> : ""}
             </div>
         </header>
