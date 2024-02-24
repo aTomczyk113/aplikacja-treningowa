@@ -17,7 +17,7 @@ function Home() {
     return (
         <div className="container homePage">
 
-         <h1> {checkUserIsLoggedAndShow()}</h1>
+         <h1 className="helloUser"> {checkUserIsLoggedAndShow()}</h1>
             <section className="hero-section  pt-5 pb-5 ">
                 <div className="row justify-center">
                     <div className="col-md-6">
