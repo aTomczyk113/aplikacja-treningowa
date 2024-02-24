@@ -199,13 +199,35 @@ class AllDataController extends Controller
      *     path="/api/all-data/delete-exercise/{id}",
      *     @OA\Response(response="200", description="Delete an exercise")
      * )
-     */
-    public function deleteExercise($id) {
+//     */
+//    public function deleteExercise($id) {
+//        $exercise = Exercise::findOrFail($id);
+//        $exercise->delete();
+//
+//        return response()->json(["message" => "Exercise deleted successfully"], 200);
+//    }
+    public function updateExercise(Request $request, $id) {
         $exercise = Exercise::findOrFail($id);
-        $exercise->delete();
 
-        return response()->json(["message" => "Exercise deleted successfully"], 200);
+        $exercise->name = $request->input("name");
+        $exercise->description = $request->input("description");
+        $exercise->body_part_id = $request->input("body_part_id");
+        $exercise->difficulty_level_id = $request->input("difficulty_level_id");
+
+        $exercise->save();
+
+        return response()->json($exercise);
     }
+    public function deleteExercise($id) {
+        $exercise = Exercise::find($id);
+        if ($exercise) {
+            $exercise->delete();
+            return response()->json(['message' => 'Exercise deleted successfully.'], 200);
+        }
+
+        return response()->json(['message' => 'Exercise not found.'], 404);
+    }
+
 
     /**
      * @OA\Get(
