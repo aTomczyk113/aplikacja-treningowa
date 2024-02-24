@@ -9,30 +9,37 @@ function Login() {
 
 
 
-    async function  sendData(e){
+    async function sendData(e) {
         e.preventDefault();
-        const response = await axios.post('http://localhost:8000/api/login',{
-            email,
-            password
-        });
+        try {
+            const response = await axios.post('http://localhost:8000/api/login', {
+                email,
+                password
+            });
 
-        const isLogged = response?.data?.user?.id ? true : false;
-        const userId = response?.data?.user?.id;
-        const userName = response?.data?.user?.name ? response?.data?.user?.name : "";
-        localStorage.setItem("isLogged", isLogged);
-        localStorage.setItem("userName", userName);
-        localStorage.setItem("userId", userId);
+            const isLogged = response?.data?.user?.id ? true : false;
+            const userId = response?.data?.user?.id;
+            const userName = response?.data?.user?.name ? response?.data?.user?.name : "";
+            localStorage.setItem("isLogged", isLogged);
+            localStorage.setItem("userName", userName);
+            localStorage.setItem("userId", userId);
 
-        if(userName == "bartek"){
-            localStorage.setItem("userRole", "admin");
-        } else {
-            localStorage.setItem("userRole", "client");
-        }
+            if (userName === "bartek") {
+                localStorage.setItem("userRole", "admin");
+            } else {
+                localStorage.setItem("userRole", "client");
+            }
 
-        if(isLogged && userName){
-            return window.location.href = "http://localhost:3000/?page=home";
+            if (isLogged && userName) {
+                return window.location.href = "http://localhost:3000/?page=home";
+            }
+        } catch (error) {
+            // Obsługa błędu
+            console.error("Błąd logowania:", error.response.data.message);
+            alert("Nieprawidłowe dane logowania. Spróbuj ponownie.");
         }
     }
+
 
     return (
         <div className="container ">

@@ -40,9 +40,9 @@ Route::post("/add-new-statistic-to-user", 'App\Http\Controllers\Api\AllDataContr
 Route::post("/get-total-done-excercises", 'App\Http\Controllers\Api\AllDataController@getTotalDoneExcercise');
 Route::post("/sendEmailWith", 'App\Http\Controllers\Api\AllDataController@sendEmailWith');
 
-Route::post("/createNewExercise", 'App\Http\Controllers\Api\AllDataController@createNewExercise');
 Route::get('/getTopPerformers', [AllDataController::class, 'getTopPerformers']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post("/createNewExercise", 'App\Http\Controllers\Api\AllDataController@createNewExercise');
 
-
-
+Route::put('/exercises/{id}', 'ExerciseController@updateExercise');
+Route::delete('/exercises/{id}', 'ExerciseController@deleteExercise');

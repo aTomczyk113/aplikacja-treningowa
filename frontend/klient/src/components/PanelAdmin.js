@@ -7,6 +7,7 @@ function PanelAdmin() {
     const [description, setDescription] = useState("");
     const [bodyPartId, setBodyPartId] = useState("1");
     const [difficultyLevelId, setDifficultyLevelId] = useState("1");
+    const [editId, setEditId] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const exercisesPerPage = 12;
 
@@ -23,23 +24,33 @@ function PanelAdmin() {
         }
     }
 
-    async function createNewExercise(e) {
+    async function handleFormSubmit(e) {
         e.preventDefault();
+        const exerciseData = {
+            name,
+            description,
+            body_part_id: bodyPartId,
+            difficulty_level_id: difficultyLevelId,
+        };
         try {
-            await axios.post("http://localhost:8000/api/createNewExercise", {
-                name,
-                description,
-                body_part_id: bodyPartId,
-                difficulty_level_id: difficultyLevelId,
-            });
+            if (editId) {
+                await axios.put(`http://localhost:8000/api/exercises/${editId}`, exerciseData);
+            } else {
+                await axios.post("http://localhost:8000/api/exercises", exerciseData);
+            }
             fetchExercises();
-            setName("");
-            setDescription("");
-            setBodyPartId("1");
-            setDifficultyLevelId("1");
+            resetForm();
         } catch (error) {
-            console.error("Error creating new exercise: ", error);
+            console.error("Error saving exercise: ", error);
         }
+    }
+
+    function resetForm() {
+        setName("");
+        setDescription("");
+        setBodyPartId("1");
+        setDifficultyLevelId("1");
+        setEditId(null);
     }
 
     async function deleteExercise(id) {
@@ -51,19 +62,19 @@ function PanelAdmin() {
         }
     }
 
-    async function updateExercise(id, updatedExerciseData) {
-        try {
-            await axios.put(`http://localhost:8000/api/exercises/${id}`, updatedExerciseData);
-            fetchExercises();
-        } catch (error) {
-            console.error("Error updating exercise: ", error);
-        }
+
+    function startEdit(exercise) {
+        setName(exercise.name);
+        setDescription(exercise.description);
+        setBodyPartId(exercise.body_part_id.toString());
+        setDifficultyLevelId(exercise.difficulty_level_id.toString());
+        setEditId(exercise.id);
     }
 
     return (
         <div className="container crud">
             <h2>Panel ćwiczeń</h2>
-            <form onSubmit={createNewExercise}>
+            <form onSubmit={handleFormSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exerciseName" className="form-label">Nazwa ćwiczenia</label>
                     <input type="text" className="form-control" id="exerciseName" value={name} onChange={(e) => setName(e.target.value)} />
@@ -89,7 +100,7 @@ function PanelAdmin() {
                         <option value="3">Ciężki</option>
                     </select>
                 </div>
-                <button type="submit" className="btn btncrud btn-primary">Stwórz nowe ćwiczenie</button>
+                <button type="submit" className="btn btncrud btn-primary">{editId ? 'Aktualizuj' : 'Stwórz nowe'} ćwiczenie</button>
             </form>
 
             <h2 className="mt-4">Lista ćwiczeń</h2>
@@ -101,7 +112,7 @@ function PanelAdmin() {
                         <div><strong>Część ciała: {exercise.body_part_id}</strong></div>
                         <div><strong>Poziom: {exercise.difficulty_level_id}</strong></div>
                         <button type="button" className="btn btn-danger me-2" onClick={() => deleteExercise(exercise.id)}>Usuń</button>
-                        <button type="button" className="btn tn-secondary me-2" onClick={() => deleteExercise(exercise.id)}>Edytuj</button>
+                        <button type="button" className="btn btn-secondary me-2" onClick={() => startEdit(exercise)}>Edytuj</button>
                     </li>
                 ))}
             </ul>
