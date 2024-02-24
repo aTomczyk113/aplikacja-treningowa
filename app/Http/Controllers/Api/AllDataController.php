@@ -94,33 +94,40 @@ class AllDataController extends Controller
 
         Mail::send(['text' => 'mail'], ["emailText" => $emailText, "title" => $title], function ($message) {
             $message->to('bpoborowski@gmail.com', 'Tutorials Point')->subject
-            ('Laravel Basic Testing Mail');
-            $message->from('trening@obrazomania.pl', 'Virat Gandhi');
+            ('Twoje statystyki');
+            $message->from('trening@obrazomania.pl', 'FitnesGym');
         });
         echo "Basic Email Sent. Check your inbox.";
     }
 
-    public function createNewExercise(Request $request){
+    public function createNewExercise(Request $request) {
         $name = $request->input("name");
         $desc = $request->input("description");
         $body_part_id = $request->input("body_part_id");
         $difficulty_level_id = $request->input("difficulty_level_id");
-        $idForEdit = $request->input("id") ? $request->input("id") : false;
+        $idForEdit = $request->input("id");
 
-        if($idForEdit){
-            $newExercise = Exercise::findOrFail($idForEdit);
+        if($idForEdit) {
+            $exercise = Exercise::findOrFail($idForEdit);
         } else {
-            $newExercise = new Exercise();
+            $exercise = new Exercise();
         }
-        $newExercise->name = $name;
-        $newExercise->description = $desc;
-        $newExercise->body_part_id = $body_part_id;
-        $newExercise->difficulty_level_id = $difficulty_level_id;
-        $newExercise->save();
+        $exercise->name = $name;
+        $exercise->description = $desc;
+        $exercise->body_part_id = $body_part_id;
+        $exercise->difficulty_level_id = $difficulty_level_id;
+        $exercise->save();
 
-        return $newExercise;
-
+        return $exercise;
     }
+
+    public function deleteExercise($id) {
+        $exercise = Exercise::findOrFail($id);
+        $exercise->delete();
+
+        return response()->json(["message" => "Exercise deleted successfully"], 200);
+    }
+
 
 
     public function getTopPerformers()
@@ -134,5 +141,24 @@ class AllDataController extends Controller
             'topPerformers' => $topPerformers
         ]);
     }
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return response()->json(['message' => 'User successfully registered', 'user' => $user], 201);
+    }
 }

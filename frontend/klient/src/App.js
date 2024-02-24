@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Home from './components/Home';
+import Panel from './components/PanelAdmin';
+import Top10 from './components/Top10';
 import ExerciseSelection from './components/ExerciseSelection';
 import LevelExercise from './components/LevelExercise';
 import ExerciseList from './components/ExerciseList';
@@ -45,6 +47,8 @@ function App() {
         <div className="App">
             <Header onViewChange={handleViewChange} />
             {selectedView === 'home' && <Home />}
+            {selectedView === 'panel' && <Panel />}
+            {selectedView === 'top10' && <Top10 />}
             {selectedView === 'exerciseSelection' && (
                 <ExerciseSelection onBodyPartSelect={handleBodyPartSelect} />
             )}

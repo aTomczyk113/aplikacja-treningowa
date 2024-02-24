@@ -5,7 +5,7 @@ import axios from "axios";
 function Statistics({ totalTrainings, totalExercisesDone }) {
     const [selectedDates, setSelectedDates] = useState([]);
     const [doneExercise, setDoneExercise] = useState(0)
-
+    const [userRole, setUserRole] = useState("")
 
     function saveDatesInLocalStorage(dates){
         setSelectedDates(dates);
@@ -45,11 +45,16 @@ function Statistics({ totalTrainings, totalExercisesDone }) {
             setDoneExercise(data);
         }
        gettotal();
+
+        const userRole = localStorage.getItem("userRole");
+        setUserRole(userRole)
     },[]);
 
     return (
         <div className="profilWrap">
-            <button onClick={sendEmail}>send email</button>
+
+
+
             <div className="datePicker mt-5">
                 <h1 className="text-center">Zaplanuj dni treningu</h1>
                 <div className="datePicker">
@@ -78,9 +83,9 @@ function Statistics({ totalTrainings, totalExercisesDone }) {
             <div className="statiscticContainer mb-5">
                 <h1 className="text-center">Twoje statystyki</h1>
                 <div className="mt-4 statisticContainer">
-                    <p className="statisticText">Ilość treningów: <span>{totalTrainings}</span></p>
                     <p className="statisticText">Ilość zrobionych ćwiczeń: <span>{doneExercise}</span></p>
                 </div>
+                <button className="btn btn-primary" onClick={sendEmail}>Wyślij email</button>
             </div>
         </div>
     );

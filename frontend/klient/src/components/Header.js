@@ -2,15 +2,35 @@
 import React from 'react';
 import '../styles/Header.css';
 import logoImage from '../imgs/logo.svg';
+import panelImage from '../imgs/paneladmin.png';
+import top10 from '../imgs/top10.png';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {useEffect, useState} from 'react'
 function Header({ onViewChange }) {
+    const [userRole, setUserRole] = useState("")
+
+    useEffect(()=>{
+        const userRole = localStorage.getItem("userRole");
+        setUserRole(userRole)
+    }, [])
+
+    const ButtonPanelAdmin = ()=>{
+        return   <a href="#" className="header-link" onClick={() => onViewChange('panel')}>
+         <div className="menuitem">
+             <img src={panelImage} alt="Logo" className="logo-image" />
+         </div>
+            <p className="col-12">Panel admina</p>
+        </a>
+    }
+
     return (
         <header className="header-container">
             <div className="logo-container">
                 <img src={logoImage} alt="Logo" className="logo-image" />
             </div>
             <div className="links-container">
+
+
                 <a href="#" className="header-link" onClick={() => onViewChange('home')}>
                     <svg className="col-12" xmlns="http://www.w3.org/2000/svg" width="39.949" height="39.949" viewBox="0 0 39.949 39.949">
                         <g id="shape" transform="translate(-9.662 -409.657)">
@@ -53,6 +73,13 @@ function Header({ onViewChange }) {
                     </svg>
                     <p className="col-12">Twój profil</p>
                 </a>
+                <a href="#" className="header-link" onClick={() => onViewChange('top10')}>
+                    <div className="menuitem">
+                        <img src={top10} alt="Logo" className="logo-image" />
+                    </div>
+                    <p className="col-12">Top 10</p>
+                </a>
+                {userRole == "admin" ? <ButtonPanelAdmin/> : ""}
             </div>
         </header>
     );

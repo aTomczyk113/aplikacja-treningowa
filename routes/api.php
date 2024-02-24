@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\AllDataController;
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -39,3 +41,8 @@ Route::post("/get-total-done-excercises", 'App\Http\Controllers\Api\AllDataContr
 Route::post("/sendEmailWith", 'App\Http\Controllers\Api\AllDataController@sendEmailWith');
 
 Route::post("/createNewExercise", 'App\Http\Controllers\Api\AllDataController@createNewExercise');
+Route::get('/getTopPerformers', [AllDataController::class, 'getTopPerformers']);
+Route::post('/register', [AuthController::class, 'register']);
+
+
+

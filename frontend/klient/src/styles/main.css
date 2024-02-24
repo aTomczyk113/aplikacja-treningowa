@@ -263,8 +263,14 @@ color: black;
 body {
     font-family: 'Didact Gothic', sans-serif !important;
 }
-.login{
-    max-width: 700px;
+.login,.registration{
+    max-width: 700px !important;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 20px;
+
+}
+.registration{
+    max-height: 500px !important;
+    min-height: unset;
 }
 .login input{
     box-shadow: unset !important;
@@ -294,4 +300,84 @@ border: 1px solid black !important;
 }
 .datePicker span{
     color: #f79518;
+}
+.crud .btncrud {
+    background-color: #f79518 !important;
+    border: unset;
+}
+.crud .btn-danger {
+    background-color: #dc3545 !important;
+}
+.crud .btn-danger:hover{
+    opacity: 0.8;
+}
+.crud .tn-secondary{
+    background-color: #6c757d !important;color: white;
+}
+.crud .tn-secondary:hover{
+    opacity: 0.8;
+    color: white;
+}
+
+.statiscticContainer
+    .btn{
+        background-color: #f79518 !important;
+        border: unset;
+    }
+
+.sc-jTzLTM,.gKyapV ,.dsKVpZ{
+    background-color: #f79518 !important;
+color:white !important;
+}
+.registration .btn{
+    padding: 10px 30px !important;
+    border-radius: 20px !important;
+}
+
+.top10{
+    max-width: 600px;
+    text-align: center;
+    margin: 30px auto;
+}
+.top10 li{
+    border: 1px solid ;
+    list-style: none;
+    margin: 10px;
+    padding: 20px;
+}
+.top10 li span{
+         color: #f79518;;
+}
+.top10 ul{
+    padding: unset;
+}
+.top10 h2{
+    text-align: center;
+}
+.header-link img{
+    margin: 0 auto;
+    display: block;
+
+}
+
+
+.header-link .menuitem{
+    padding: 10px; background-color: #333333;    border-radius: 100%;
+    max-width: 40px;
+    margin: 0 auto;
+}
+.congrats-popup .form-check-label{
+    height: 50px;
+}
+.congrats-popup input{
+    border: 1px solid ;
+}
+.congrats-popup input:checked {
+    background-color: #f79518;
+    border: 0px;
+    box-shadow: unset;
+}
+
+.congrats-popup{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

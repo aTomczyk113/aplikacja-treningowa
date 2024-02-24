@@ -2,7 +2,7 @@ import React from 'react';
 import heroImg from '../imgs/home.jpg';
 import homeImg1 from '../imgs/home3.jpg';
 import homeImg2 from '../imgs/home2.jpg';
-
+import Testshadow from "./Testshadow"
 function Home() {
 
     function checkUserIsLoggedAndShow(){
@@ -16,7 +16,8 @@ function Home() {
 
     return (
         <div className="container homePage">
-            {checkUserIsLoggedAndShow()}
+
+         <h1> {checkUserIsLoggedAndShow()}</h1>
             <section className="hero-section  pt-5 pb-5 ">
                 <div className="row justify-center">
                     <div className="col-md-6">
