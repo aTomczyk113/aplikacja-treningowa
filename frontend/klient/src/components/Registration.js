@@ -16,7 +16,6 @@ function Registration() {
                 password
             });
             alert("Rejestracja zakończona sukcesem. Możesz się teraz zalogować.");
-            window.location.href = "/login"; // Adjust if necessary
         } catch (error) {
             if (error.response && error.response.status === 422) {
                 alert(error.response.data.message); // Detailed validation error
